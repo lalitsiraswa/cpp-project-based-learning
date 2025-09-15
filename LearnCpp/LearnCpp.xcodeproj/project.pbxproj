@@ -28,6 +28,7 @@
 			buildPhase = FB1F55272E76A07D00B8FE44 /* Sources */;
 			membershipExceptions = (
 				"task-manager/Main",
+				"task-manager/PracticeMain",
 			);
 		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
