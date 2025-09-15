@@ -5,32 +5,44 @@
 struct Task {
     int id;
     std::string description;
+    bool completed = false;  // default member initializer
 
     // Constructor
-    Task(int i, std::string d) : id(i), description(std::move(d)) {
-        std::cout << "✅ Constructed Task(" << id << ", " << description << ")\n";
-    }
-
-    // Copy constructor
-    Task(const Task& other) : id(other.id), description(other.description) {
-        std::cout << "📋 Copied Task(" << id << ", " << description << ")\n";
-    }
-
-    // Move constructor
-    Task(Task&& other) noexcept : id(other.id), description(std::move(other.description)) {
-        std::cout << "🚚 Moved Task(" << id << ", " << description << ")\n";
-    }
+    Task(int i, std::string d, bool c = false)
+        : id(i), description(std::move(d)), completed(c) {
+            std::cout << "Constructed Task(" << id << ", " << description << ", " << completed << std::endl;
+        }
 };
 
 int main() {
-    std::vector<Task> tasks;
+    // 1️⃣ Basic type initialization
+    int a{10};      // ✅ value-initialized to 10
+    int b{};        // ✅ value-initialized to 0 (instead of garbage!)
+    double c{3.14}; // ✅ value-initialized to 3.14
 
-//    std::cout << "\n--- Using push_back() ---\n";
-//    tasks.push_back(Task{1, "Breakfast"}); // Construct temporary + move into vector
+    std::cout << "a=" << a << " b=" << b << " c=" << c << "\n";
 
-    std::cout << "\n--- Using emplace_back() ---\n";
-    tasks.emplace_back(2, "Lunch"); // Construct directly inside vector (no move)
+    // 2️⃣ Struct initialization
+    Task t1{1, "Breakfast"};          // ✅ brace-initialization
+    Task t2{2, "Lunch", true};        // ✅ all fields initialized
+    Task t3{3, "Dinner"};             // ✅ completed uses default false
 
-    std::cout << "\n--- Done ---\n";
+    std::cout << "t1: " << t1.description << " completed=" << t1.completed << "\n";
+    std::cout << "t2: " << t2.description << " completed=" << t2.completed << "\n";
+    std::cout << "t3: " << t3.description << " completed=" << t3.completed << "\n";
+
+    // 3️⃣ Initializing an array
+    int numbers[]{1, 2, 3, 4, 5};  // ✅ array initialized
+    std::cout << "numbers[2] = " << numbers[2] << "\n";
+
+    // 4️⃣ Initializing a vector
+    std::vector<int> vec{10, 20, 30}; // ✅ fills with 10, 20, 30
+    std::cout << "vec size = " << vec.size() << "\n";
+
+    // 5️⃣ Avoiding narrowing conversion
+    // int x{3.14};  // ❌ Compile error: narrowing conversion (safe!)
+    int x(3.14);     // ⚠️ Allowed in old-style initialization (value will be truncated)
+    std::cout << "x = " << x << "\n";
+
     return 0;
 }
