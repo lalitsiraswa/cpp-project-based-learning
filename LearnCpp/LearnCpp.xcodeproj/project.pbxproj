@@ -22,9 +22,22 @@
 		FB1F552B2E76A07D00B8FE44 /* LearnCpp */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = LearnCpp; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		FB1F55422E77DF5900B8FE44 /* Exceptions for "LearnCpp" folder in "Compile Sources" phase from "LearnCpp" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = FB1F55272E76A07D00B8FE44 /* Sources */;
+			membershipExceptions = (
+				"task-manager/Main",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		FB1F552D2E76A07D00B8FE44 /* LearnCpp */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FB1F55422E77DF5900B8FE44 /* Exceptions for "LearnCpp" folder in "Compile Sources" phase from "LearnCpp" target */,
+			);
 			path = LearnCpp;
 			sourceTree = "<group>";
 		};
