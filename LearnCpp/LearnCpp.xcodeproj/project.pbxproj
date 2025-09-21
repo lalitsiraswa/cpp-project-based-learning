@@ -27,6 +27,7 @@
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = FB1F55272E76A07D00B8FE44 /* Sources */;
 			membershipExceptions = (
+				practice/PracticeCpp,
 				"task-manager/Main",
 				"task-manager/PracticeMain",
 			);
@@ -40,6 +41,11 @@
 				FB1F55422E77DF5900B8FE44 /* Exceptions for "LearnCpp" folder in "Compile Sources" phase from "LearnCpp" target */,
 			);
 			path = LearnCpp;
+			sourceTree = "<group>";
+		};
+		FB70AAC82E7FD95B00CA5CC0 /* ExceptionHandling */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = ExceptionHandling;
 			sourceTree = "<group>";
 		};
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -60,6 +66,7 @@
 			children = (
 				FB1F552D2E76A07D00B8FE44 /* LearnCpp */,
 				FB1F552C2E76A07D00B8FE44 /* Products */,
+				FB70AAC82E7FD95B00CA5CC0 /* ExceptionHandling */,
 			);
 			sourceTree = "<group>";
 		};
@@ -88,6 +95,7 @@
 			);
 			fileSystemSynchronizedGroups = (
 				FB1F552D2E76A07D00B8FE44 /* LearnCpp */,
+				FB70AAC82E7FD95B00CA5CC0 /* ExceptionHandling */,
 			);
 			name = LearnCpp;
 			packageProductDependencies = (
