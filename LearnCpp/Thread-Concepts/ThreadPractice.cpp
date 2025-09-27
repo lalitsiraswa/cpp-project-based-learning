@@ -1,10 +1,23 @@
 #include <iostream>
 #include <thread>
+#include <mutex>
+
+int counter = 0;
+std::mutex mtx;
+
+void increment() {
+    for(int i = 0; i < 100000; i++){
+        std::lock_guard<std::mutex> lock(mtx);
+        counter++;
+    }
+}
 
 int main(){
-    std::thread worker([] {
-        std::cout << "Hello from lambda thread!" << std::endl;
-    });
-    worker.join();
+    std::thread t1(increment);
+    std::thread t2(increment);
+    
+    t1.join();
+    t2.join();
+    std::cout << "Counter = " << counter << std::endl;
     return 0;
 }
