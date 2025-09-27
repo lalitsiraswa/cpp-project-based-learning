@@ -30,6 +30,7 @@
 				practice/PracticeCpp,
 				"task-manager/Main",
 				"task-manager/PracticeMain",
+				"task-manager/TaskManager",
 			);
 		};
 		FB70AACC2E7FDFDE00CA5CC0 /* Exceptions for "ExceptionHandling" folder in "Compile Sources" phase from "LearnCpp" target */ = {
@@ -59,6 +60,11 @@
 			path = ExceptionHandling;
 			sourceTree = "<group>";
 		};
+		FB70AAD72E87D9F600CA5CC0 /* Thread-Concepts */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Thread-Concepts";
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +81,7 @@
 		FB1F55222E76A07D00B8FE44 = {
 			isa = PBXGroup;
 			children = (
+				FB70AAD72E87D9F600CA5CC0 /* Thread-Concepts */,
 				FB1F552D2E76A07D00B8FE44 /* LearnCpp */,
 				FB1F552C2E76A07D00B8FE44 /* Products */,
 				FB70AAC82E7FD95B00CA5CC0 /* ExceptionHandling */,
@@ -107,6 +114,7 @@
 			fileSystemSynchronizedGroups = (
 				FB1F552D2E76A07D00B8FE44 /* LearnCpp */,
 				FB70AAC82E7FD95B00CA5CC0 /* ExceptionHandling */,
+				FB70AAD72E87D9F600CA5CC0 /* Thread-Concepts */,
 			);
 			name = LearnCpp;
 			packageProductDependencies = (
