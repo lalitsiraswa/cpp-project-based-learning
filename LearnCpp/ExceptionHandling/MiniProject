@@ -1,0 +1,101 @@
+#include <iostream>
+#include <fstream>
+#include <string>
+#include <vector>
+#include <stdexcept>
+
+//Custom Exception Class
+class TaskException : public std::runtime_error {
+public:
+    explicit TaskException(const std::string& msg) : std::runtime_error(msg){
+    }
+};
+
+//Data Model
+struct Task {
+    int id;
+    std::string description;
+};
+
+//FileManager Class
+class FileManager {
+public:
+    static std::vector<Task> loadFromFile(const std::string& filename){
+        std::ifstream file(filename);
+        if(!file){
+            throw TaskException("File not found: " + filename);
+        }
+        
+        std::vector<Task> tasks;
+        int id;
+        std::string description;
+        while(file >> id >> std::ws && std::getline(file, description)){
+            if(description.empty()) {
+                throw TaskException("Corrupted file: Empty task description at id " + std::to_string(id));
+            }
+            tasks.push_back({id, description});
+        }
+        return tasks;
+    }
+    
+    static void saveToFile(const std::string& filename, const std::vector<Task>& tasks){
+        std::ofstream file(filename, std::ios::trunc);
+        if(!file){
+            throw TaskException("Cound not open file for writing: " + filename);
+        }
+        for(const auto& t : tasks){
+            file << t.id << " " << t.description << std::endl;
+        }
+    }
+};
+
+//TaskManager Class
+class TaskManagerCls {
+private:
+    std::vector<Task> tasks;
+public:
+    void load(const std::string& filename){
+        tasks = FileManager::loadFromFile(filename);
+    }
+    
+    void addTask(int id, const std::string& description){
+        if(description.empty()){
+            throw TaskException("Task description cannot be empty!");
+        }
+        tasks.push_back({id, description});
+    }
+    
+    void displayTasks() const {
+        if(tasks.empty()){
+            std::cout << "No tasks available." << std::endl;
+            return;
+        }
+        for(const auto& t : tasks){
+            std::cout << t.id << " : " << t.description << std::endl;
+        }
+    }
+};
+
+//Main Program ro$iWx4x
+int main(){
+    TaskManagerCls tm;
+    try{
+        tm.load("tasks.txt");
+        tm.addTask(1, "WakeUp");
+        tm.addTask(2, "Breakfast");
+        tm.addTask(3, "Lunch");
+        tm.addTask(4, "Dinner");
+        tm.displayTasks();
+    }
+    catch (const TaskException& e){
+        std::cerr << "[Task Error] " << e.what() << std::endl;
+    }
+    catch (const std::exception& e){
+        std::cerr << "[General Error] " << e.what() << std::endl;
+    }
+    catch (...){
+        std::cerr << "[Unknown Error] Something went wrong!" << std::endl;
+    }
+    std::cout << "Program continues after error handling!" << std::endl;
+    return 0;
+}

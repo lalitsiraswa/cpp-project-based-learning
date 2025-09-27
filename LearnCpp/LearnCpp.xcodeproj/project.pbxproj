@@ -32,6 +32,14 @@
 				"task-manager/PracticeMain",
 			);
 		};
+		FB70AACC2E7FDFDE00CA5CC0 /* Exceptions for "ExceptionHandling" folder in "Compile Sources" phase from "LearnCpp" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = FB1F55272E76A07D00B8FE44 /* Sources */;
+			membershipExceptions = (
+				ExceptionHandling,
+				MiniProject,
+			);
+		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -45,6 +53,9 @@
 		};
 		FB70AAC82E7FD95B00CA5CC0 /* ExceptionHandling */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FB70AACC2E7FDFDE00CA5CC0 /* Exceptions for "ExceptionHandling" folder in "Compile Sources" phase from "LearnCpp" target */,
+			);
 			path = ExceptionHandling;
 			sourceTree = "<group>";
 		};
