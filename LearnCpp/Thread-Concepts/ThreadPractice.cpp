@@ -1,25 +1,50 @@
 #include <iostream>
 #include <thread>
+#include <queue>
 #include <mutex>
+#include <condition_variable>
 
-std::mutex mtx1, mtx2;
-int value1 = 0, value2 = 0;
+std::queue<int> q;
+std::mutex mtx;
+std::condition_variable cv;
+bool done{false};
 
-void safeIncrement() {
-    for(int i = 0; i < 100000; i++){
-        std::scoped_lock<std::mutex, std::mutex> lock(mtx1, mtx2); // Optional: <std::mutex, std::mutex>
-        value1++;
-        value2++;
+void producer() {
+    for(int i = 1; i <= 5; i++){
+        std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+        {
+            std::lock_guard<std::mutex> lock(mtx);
+            q.push(i);
+            std::cout << "Produced " << i << std::endl;
+        }
+        cv.notify_one();
+    }
+    {
+        std::lock_guard<std::mutex> lock(mtx);
+        done = true;
+    }
+    cv.notify_one();
+}
+
+void consumer() {
+    while (true){
+        std::unique_lock<std::mutex> lock(mtx);
+        cv.wait(lock, [] { return !q.empty() || done;});
+        while(!q.empty()){
+            std::cout << "Consumed " << q.front() << std::endl;
+            q.pop();
+        }
+        if(done) break;
     }
 }
 
 int main(){
-    std::thread t1(safeIncrement);
-    std::thread t2(safeIncrement);
+    std::thread t1(producer);
+    std::thread t2(consumer);
     
     t1.join();
     t2.join();
     
-    std::cout << "Value1 = " << value1 << ", value2 = " << value2 << std::endl;
+    std::cout << "Processing finished!" << std::endl;
     return 0;
 }
