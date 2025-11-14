@@ -41,6 +41,13 @@
 				MiniProject,
 			);
 		};
+		FBA859B62EC2039700C087B8 /* Exceptions for "Thread-Concepts" folder in "Compile Sources" phase from "LearnCpp" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = FB1F55272E76A07D00B8FE44 /* Sources */;
+			membershipExceptions = (
+				ThreadPractice,
+			);
+		};
 /* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -62,6 +69,9 @@
 		};
 		FB70AAD72E87D9F600CA5CC0 /* Thread-Concepts */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				FBA859B62EC2039700C087B8 /* Exceptions for "Thread-Concepts" folder in "Compile Sources" phase from "LearnCpp" target */,
+			);
 			path = "Thread-Concepts";
 			sourceTree = "<group>";
 		};
